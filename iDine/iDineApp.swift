@@ -9,9 +9,25 @@ import SwiftUI
 
 @main
 struct iDineApp: App {
+    var order = Order()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            //ContentView().environmentObject(order)
+            
+            TabView {
+                        ContentView().environmentObject(order)
+                            .tabItem {
+                                Image(systemName: "list.dash")
+                                Text("Menu")
+                            }
+
+                        OrderView()
+                            .environmentObject(order)
+                            .tabItem {
+                                Image(systemName: "square.and.pencil")
+                                Text("Order")
+                            }
+                    }
         }
     }
 }
